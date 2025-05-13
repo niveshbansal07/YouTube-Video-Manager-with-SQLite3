@@ -35,7 +35,6 @@ def add_video(name, time):
     print("- Success! Your video has been added to the library. -")
 
 def update_video(video_id, new_name, new_time):
-    list_videos()
     cursor.execute("UPDATE videos SET name = ?, time = ? WHERE id = ?", (new_name, new_time, video_id))
     connection.commit()
     print("- Success! Your video has been updated. -")
@@ -51,11 +50,11 @@ def search_video(video_name):
     results = cursor.fetchall()
     if results:
         for video_id, name, time in results:
-            print("-" * 25)
+            print("_" * 25)
             print(f"ID       : {video_id}")
             print(f"Name     : {name}")
             print(f"Duration : {time}")
-            print("-" * 25)
+            print("_" * 25)
     else:
         print("- Video is not found -")
 
@@ -83,11 +82,13 @@ def main():
             video_name = input("Enter Video name to search: ").capitalize()
             search_video(video_name)
         elif choice == '4':
+            list_videos()
             video_id = input("Enter video ID to Update: ")
             new_name = input("Enter the New name of Video: ")
             new_time = input("Enter the New time of Video: ")
             update_video(video_id, new_name, new_time)
         elif choice == '5':
+            list_videos()
             video_id = input("Enter video ID to Delete: ")
             delete_video(video_id)
         elif choice == '6':
