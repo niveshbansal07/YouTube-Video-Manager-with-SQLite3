@@ -1,5 +1,4 @@
 import sqlite3
-from datetime import datetime
 
 connection = sqlite3.connect('YouTube_Videos.db')
 
@@ -36,6 +35,7 @@ def add_video(name, time):
     print("- Success! Your video has been added to the library. -")
 
 def update_video(video_id, new_name, new_time):
+    list_videos()
     cursor.execute("UPDATE videos SET name = ?, time = ? WHERE id = ?", (new_name, new_time, video_id))
     connection.commit()
     print("- Success! Your video has been updated. -")
